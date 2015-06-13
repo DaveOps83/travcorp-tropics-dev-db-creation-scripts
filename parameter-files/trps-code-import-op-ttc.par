@@ -1,0 +1,3 @@
+DIRECTORY=dump_file_dir 
+DUMPFILE=trps_code_op_ttc.dmp 
+LOGFILE=trps_code_import_op_ttc.log

@@ -1,0 +1,7 @@
+CONTENT=METADATA_ONLY
+FULL=y
+INCLUDE=SYNONYM:"IN (SELECT synonym_name FROM dba_synonyms WHERE table_owner IN ('CS_TTC', 'RS_TTC', 'OP_TTC', 'PR_TTC', 'SC_TTC', 'CUSTOM_TTC'))"
+DIRECTORY=dump_file_dir 
+DUMPFILE=trps_public_synonyms.dmp
+REUSE_DUMPFILES=YES
+LOGFILE=trps_public_synonyms_export.log

@@ -1,3 +1,3 @@
-DIRECTORY=dump_file_dir 
-DUMPFILE=trps_code_prodn.dmp 
-LOGFILE=trps_code_import_prodn.log
+DIRECTORY=dump_file_dir
+DUMPFILE=trps-code-prodn.dmp 
+LOGFILE=trps-code-import-prodn.log

@@ -1,3 +1,3 @@
-DIRECTORY=dump_file_dir 
-DUMPFILE=trps_code_sc_ttc.dmp 
-LOGFILE=trps_code_import_sc_ttc.log
+DIRECTORY=dump_file_dir
+DUMPFILE=trps-code-sc-ttc.dmp 
+LOGFILE=trps-code-import-sc-ttc.log

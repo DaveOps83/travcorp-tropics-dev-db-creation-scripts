@@ -1,0 +1,3 @@
+DIRECTORY=dump_file_dir 
+DUMPFILE=trps_public_synonyms.dmp 
+LOGFILE=trps_public_synonyms_import.log

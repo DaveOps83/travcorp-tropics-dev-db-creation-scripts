@@ -8,15 +8,15 @@ SCRIPT_FILE_PATH=script-files
 SOURCE_DB=TRPS
 TARGET_DB=TRPSTEST
 
-#Prepare dump directory
+#Prepare the dump file directory
 
 ${SCRIPT_FILE_PATH}/prepare-dump-directory.sh ${DUMP_FILE_DIR_PATH}
 
-#Prepare source DB
+#Run the pre-export actions on the source database.
 
-sqlplus "sys/admin@${SOURCE_DB} as sysdba" @${SQL_FILE_PATH}/prepare-source-database.sql ${DUMP_FILE_DIR_NAME} ${DUMP_FILE_DIR_PATH}
+sqlplus "sys/admin@${SOURCE_DB} as sysdba" @${SQL_FILE_PATH}/pre-export-actions.sql ${DUMP_FILE_DIR_NAME} ${DUMP_FILE_DIR_PATH}
 
-#Export database objects from source DB
+#Export the schema objects from the source database.
 
 expdp \"sys/admin@${SOURCE_DB} as sysdba\" PARFILE=${PAR_FILE_PATH}/trps-tables-export.par
 
@@ -38,11 +38,11 @@ expdp \"sys/admin@${SOURCE_DB} as sysdba\" PARFILE=${PAR_FILE_PATH}/trps-code-ex
 
 expdp \"sys/admin@${SOURCE_DB} as sysdba\" PARFILE=${PAR_FILE_PATH}/trps-code-export-itropics.par
 
-#Prepare target DB
+#Run the pre schema import actions on the target database.
 
-sqlplus "sys/admin@${TARGET_DB} as sysdba" @${SQL_FILE_PATH}/prepare-target-database.sql ${DUMP_FILE_DIR_NAME} ${DUMP_FILE_DIR_PATH} ${TARGET_DB}
+sqlplus "sys/admin@${TARGET_DB} as sysdba" @${SQL_FILE_PATH}/pre-schema-import-actions.sql ${DUMP_FILE_DIR_NAME} ${DUMP_FILE_DIR_PATH} ${TARGET_DB}
 
-#Import database objects into target DB
+#Import the schema objects into target database.
 
 impdp \"sys/admin@${TARGET_DB} as sysdba\" PARFILE=${PAR_FILE_PATH}/trps-tables-import.par
 
@@ -64,22 +64,22 @@ impdp \"sc_ttc/sc_ttc@${TARGET_DB}\" PARFILE=${PAR_FILE_PATH}/trps-code-import-s
 
 impdp \"itropics/itropics@${TARGET_DB}\" PARFILE=${PAR_FILE_PATH}/trps-code-import-itropics.par
 
-#Run post import actions on target DB
+#Run the post schema object import actions on target database.
 
-sqlplus "sys/admin@${TARGET_DB} as sysdba" @${SQL_FILE_PATH}/post-creation-actions.sql
+sqlplus "sys/admin@${TARGET_DB} as sysdba" @${SQL_FILE_PATH}/post-schema-import-actions.sql
 
-#Export data from source DB
+#Export schema data from the source database.
 
 expdp \"sys/admin@${SOURCE_DB} as sysdba\" PARFILE=${PAR_FILE_PATH}/trps-data-export-cs-ttc.par
 
-#Prepare target DB for data import
+#Run the pre data import actions on the target database.
 
 sqlplus "sys/admin@${TARGET_DB} as sysdba" @${SQL_FILE_PATH}/pre-data-import-actions.sql
 
-#Import data into target DB
+#Import schema data into the target database.
 
 impdp \"cs_ttc/cs_ttc@${TARGET_DB}\" PARFILE=${PAR_FILE_PATH}/trps-data-import-cs-ttc.par
 
-#Run post data import actions on target DB
+#Run the post schema data import actions on target database.
 
 sqlplus "sys/admin@${TARGET_DB} as sysdba" @${SQL_FILE_PATH}/post-data-import-actions.sql

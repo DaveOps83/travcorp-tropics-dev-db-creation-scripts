@@ -1,6 +1,6 @@
 #!/bin/sh
 
-DUMP_FILE_DIR_NAME=dump-file-dir
+DUMP_FILE_DIR_NAME=dump_file_dir
 DUMP_FILE_DIR_PATH=$(pwd)/dump-files
 PAR_FILE_PATH=parameter-files
 SQL_FILE_PATH=sql-files

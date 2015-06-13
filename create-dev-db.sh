@@ -1,7 +1,7 @@
 #!/bin/sh
 
 DUMP_FILE_DIR_NAME=dump_file_dir
-DUMP_FILE_DIR_PATH=$(pwd)/dump-files
+DUMP_FILE_DIR_PATH=/home/oracle/trps-dump-files
 PAR_FILE_PATH=parameter-files
 SQL_FILE_PATH=sql-files
 SCRIPT_FILE_PATH=script-files
